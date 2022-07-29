@@ -1,4 +1,6 @@
 const MAX_INPUT_LENGTH = 11;
+const MAX_OUTPUT_LENGTH = 21;
+const OUTPUT_LENGTH_ERR = "ERROR"
 const DEFAULT_VALUE = 0;
 
 const buttons = document.querySelectorAll(".button");
@@ -9,6 +11,17 @@ let memory = {
     value: 0,
     action: null,
 };
+
+function setOutput(value) {
+    if (!value) {
+        memoryRow.innerText = DEFAULT_VALUE;
+        return;
+    } else if (value.length > MAX_OUTPUT_LENGTH) {
+        memoryRow.innerText = OUTPUT_LENGTH_ERR;
+        return;
+    }
+    memoryRow.innerText = value;
+}
 
 function addNumber(number) {
     if (number == 0 && inputRow.innerText == "0") return;
@@ -28,7 +41,7 @@ function handleAction(e) {
             break;
         case "c":
             inputRow.innerText = DEFAULT_VALUE;
-            memoryRow.innerText = DEFAULT_VALUE;
+            setOutput();
             memory.value = DEFAULT_VALUE;
             memory.action = null;
             break;
