@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="app.js" defer></script>
     <link rel="stylesheet" href="style.css">
     <title>Calculator</title>
 </head>
@@ -19,28 +20,28 @@
         </div>
         <div class="keyboard">
             <!-- Number buttons -->
-            <div class="button number-button" data-symbol="0" style="grid-area: 5 / 2 / auto / auto;">0</div>
-            <div class="button number-button" data-symbol="1" style="grid-area: 4 / 1 / auto / auto;">1</div>
-            <div class="button number-button" data-symbol="2" style="grid-area: 4 / 2 / auto / auto;">2</div>
-            <div class="button number-button" data-symbol="3" style="grid-area: 4 / 3 / auto / auto;">3</div>
-            <div class="button number-button" data-symbol="4" style="grid-area: 3 / 1 / auto / auto;">4</div>
-            <div class="button number-button" data-symbol="5" style="grid-area: 3 / 2 / auto / auto;">5</div>
-            <div class="button number-button" data-symbol="6" style="grid-area: 3 / 3 / auto / auto;">6</div>
-            <div class="button number-button" data-symbol="7" style="grid-area: 2 / 1 / auto / auto;">7</div>
-            <div class="button number-button" data-symbol="8" style="grid-area: 2 / 2 / auto / auto;">8</div>
-            <div class="button number-button" data-symbol="9" style="grid-area: 2 / 3 / auto / auto;">9</div>
+            <div class="button number-button" data-symbol="0" data-type="number" style="grid-area: 5 / 2 / auto / auto;">0</div>
+            <div class="button number-button" data-symbol="1" data-type="number" style="grid-area: 4 / 1 / auto / auto;">1</div>
+            <div class="button number-button" data-symbol="2" data-type="number" style="grid-area: 4 / 2 / auto / auto;">2</div>
+            <div class="button number-button" data-symbol="3" data-type="number" style="grid-area: 4 / 3 / auto / auto;">3</div>
+            <div class="button number-button" data-symbol="4" data-type="number" style="grid-area: 3 / 1 / auto / auto;">4</div>
+            <div class="button number-button" data-symbol="5" data-type="number" style="grid-area: 3 / 2 / auto / auto;">5</div>
+            <div class="button number-button" data-symbol="6" data-type="number" style="grid-area: 3 / 3 / auto / auto;">6</div>
+            <div class="button number-button" data-symbol="7" data-type="number" style="grid-area: 2 / 1 / auto / auto;">7</div>
+            <div class="button number-button" data-symbol="8" data-type="number" style="grid-area: 2 / 2 / auto / auto;">8</div>
+            <div class="button number-button" data-symbol="9" data-type="number" style="grid-area: 2 / 3 / auto / auto;">9</div>
 
             <!-- Symbols and operations -->
-            <div class="class button ce-button" data-symbol="ce" style="grid-area: 1 / 1 / auto / auto;">CE</div>
-            <div class="class button clear-button" data-symbol="c" style="grid-area: 1 / 2 / auto / auto;">C</div>
-            <div class="class button delete-button" data-symbol="del" style="grid-area: 1 / 3 / auto / auto;">&leftarrow;</div>
-            <div class="class button divide-button" data-symbol="+" style="grid-area: 1 / 4 / auto / auto;">&div;</div>
-            <div class="class button multiply-button" data-symbol="+" style="grid-area: 2 / 4 / auto / auto;">&times;</div>
-            <div class="class button minus-button" data-symbol="+" style="grid-area: 3 / 4 / auto / auto;">-</div>
-            <div class="class button plus-button" data-symbol="+" style="grid-area: 4 / 4 / auto / auto;">+</div>
-            <div class="button sign-button" data-symbol="sgn" style="grid-area: 5 / 1 / auto / auto;">&pm;</div>
-            <div class="button decimal-button" data-symbol="." style="grid-area: 5 / 3 / auto / auto">.</div>
-            <div class="button equals-button" data-symbol="=" style="grid-area: 5 / 4 / auto / auto;">=</div>
+            <div class="class button ce-button" data-symbol="ce" data-type="action" style="grid-area: 1 / 1 / auto / auto;">CE</div>
+            <div class="class button clear-button" data-symbol="c" data-type="action" style="grid-area: 1 / 2 / auto / auto;">C</div>
+            <div class="class button delete-button" data-symbol="del" data-type="action" style="grid-area: 1 / 3 / auto / auto;">&leftarrow;</div>
+            <div class="class button divide-button" data-symbol="+" data-type="action" style="grid-area: 1 / 4 / auto / auto;">&div;</div>
+            <div class="class button multiply-button" data-symbol="+" data-type="action" style="grid-area: 2 / 4 / auto / auto;">&times;</div>
+            <div class="class button minus-button" data-symbol="+" data-type="action" style="grid-area: 3 / 4 / auto / auto;">-</div>
+            <div class="class button plus-button" data-symbol="+" data-type="action" style="grid-area: 4 / 4 / auto / auto;">+</div>
+            <div class="button sign-button" data-symbol="sgn" data-type="action" style="grid-area: 5 / 1 / auto / auto;">&pm;</div>
+            <div class="button decimal-button" data-symbol="." data-type="action" style="grid-area: 5 / 3 / auto / auto">.</div>
+            <div class="button equals-button" data-symbol="=" data-type="action" style="grid-area: 5 / 4 / auto / auto;">=</div>
         </div>
     </div>
 </body>
