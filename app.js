@@ -7,8 +7,15 @@ const buttons = document.querySelectorAll(".button");
 const memoryRow = document.querySelector(".top-row");
 const inputRow = document.querySelector(".input-row");
 
+const FUNCTIONS = {
+    "+": (a, b) => a + b,
+    "-": (a, b) => a - b,
+    "&times;": (a, b) => a * b,
+    "&div;": (a, b) => a / b
+}
+
 let memory = {
-    value: 0,
+    value: DEFAULT_VALUE,
     action: null,
 };
 
@@ -21,6 +28,10 @@ function setOutput(value) {
         return;
     }
     memoryRow.innerText = value;
+}
+
+function setInput(value) {
+    inputRow.innerText = value ? value : DEFAULT_VALUE;
 }
 
 function addNumber(number) {
@@ -41,9 +52,20 @@ function addDecimal() {
 function changeSign() {
     if (inputRow.innerText.length >= MAX_INPUT_LENGTH) return;
     if (inputRow.innerText.includes("-")) {
-        inputRow.innerText = inputRow.innerText.substring(1);
+        setInput(inputRow.innerText.substring(1));
     } else {
-        inputRow.innerText = "-" + inputRow.innerText;
+        setInput("-" + inputRow.innerText);
+    }
+}
+
+function equals() {
+    let input = parseFloat(inputRow.innerText);
+    if (!memory.action) {
+        setOutput(input);
+        memory.value = input;
+        setInput();
+    } else {
+        memory.value = memory.action(memory.value, input);
     }
 }
 
@@ -51,10 +73,10 @@ function handleAction(e) {
     let symbol = e.target.getAttribute("data-symbol");
     switch (symbol) {
         case "ce":
-            inputRow.innerText = DEFAULT_VALUE;
+            setInput();
             break;
         case "c":
-            inputRow.innerText = DEFAULT_VALUE;
+            setInput();
             setOutput();
             memory.value = DEFAULT_VALUE;
             memory.action = null;
@@ -62,11 +84,11 @@ function handleAction(e) {
         case "del":
             if (inputRow.innerText == "0" || inputRow.innerText.length == 0) break;
             if (inputRow.innerText == "-0") {
-                inputRow.innerText = "0";
+                setInput("0");
             } else if (inputRow.innerText.length == 1) {
-                inputRow.innerText = DEFAULT_VALUE;
+                setInput();
             } else {
-                inputRow.innerText = inputRow.innerText.slice(0, -1);
+                setInput(inputRow.innerText.slice(0, -1));
             }
             break;
         case ".":
@@ -74,6 +96,9 @@ function handleAction(e) {
             break;
         case "sgn":
             changeSign();
+            break;
+        case "=":
+            equals()
             break;
         default:
             break;
