@@ -74,16 +74,16 @@ function equals() {
 }
 
 function setAction(key) {
-    console.log(key);
     let func = FUNCTIONS[key];
     if (!func) throw Error("Invalid action");
-    memory.action = func;
     if (memory.value) {
         equals()
         memory.action = func;
     } else {
         memory.value = parseFloat(inputRow.innerText);
+        setInput();
     }
+    memory.action = func;
     setOutput(`${memory.value} ${key}`);
 }
 
