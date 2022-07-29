@@ -125,6 +125,7 @@ function handleAction(e) {
 }
 
 function buttonClick(e) {
+    e.target.classList.add("pressed");
     if (e.target.getAttribute("data-type") == "number") {
         addNumber(parseInt(e.target.getAttribute("data-symbol")));
     } else {
@@ -132,4 +133,12 @@ function buttonClick(e) {
     }
 }
 
-buttons.forEach(button => button.addEventListener("click", buttonClick));
+function transitionEnd(e) {
+    if (!this.classList) return;
+    this.classList.remove("pressed");
+}
+
+buttons.forEach(button => {
+    button.addEventListener("click", buttonClick);
+    button.addEventListener("transitionend", transitionEnd);
+});
