@@ -10,8 +10,8 @@ const inputRow = document.querySelector(".input-row");
 const FUNCTIONS = {
     "+": (a, b) => a + b,
     "-": (a, b) => a - b,
-    "&times;": (a, b) => a * b,
-    "&div;": (a, b) => a / b
+    "×": (a, b) => a * b,
+    "÷": (a, b) => a / b
 }
 
 let memory = {
@@ -60,13 +60,31 @@ function changeSign() {
 
 function equals() {
     let input = parseFloat(inputRow.innerText);
+    if (!input) return;
     if (!memory.action) {
-        setOutput(input);
         memory.value = input;
+        setOutput(input);
         setInput();
     } else {
         memory.value = memory.action(memory.value, input);
+        memory.action = null;
+        setOutput(memory.value);
+        setInput();
     }
+}
+
+function setAction(key) {
+    console.log(key);
+    let func = FUNCTIONS[key];
+    if (!func) throw Error("Invalid action");
+    memory.action = func;
+    if (memory.value) {
+        equals()
+        memory.action = func;
+    } else {
+        memory.value = parseFloat(inputRow.innerText);
+    }
+    setOutput(`${memory.value} ${key}`);
 }
 
 function handleAction(e) {
@@ -101,6 +119,7 @@ function handleAction(e) {
             equals()
             break;
         default:
+            setAction(symbol);
             break;
     }
 }
