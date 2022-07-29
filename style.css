@@ -4,6 +4,23 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    background-color: #eee;
+    height: 95vh;
+}
+
+.footer {
+    display: flex;
+    align-items: flex-end;
+    margin: 5vh 0;
+    color: gray;
+    font-weight: 400;
+    flex: 1;
+}
+
+a {
+    text-decoration: none;
+    font-weight: 500;
+    color: inherit;
 }
 
 /* Calculator background */
