@@ -26,10 +26,24 @@ function setOutput(value) {
 function addNumber(number) {
     if (number == 0 && inputRow.innerText == "0") return;
     if (inputRow.innerText.length >= MAX_INPUT_LENGTH) return;
-    if (inputRow.innerText == "0") {
-        inputRow.innerText = number;
+    if (inputRow.innerText == "0" || inputRow.innerText == "-0") {
+        inputRow.innerText = inputRow.innerText.slice(0, -1) + number;
     } else {
         inputRow.innerText += number;
+    }
+}
+
+function addDecimal() {
+    if (inputRow.innerText.includes(".") || inputRow.innerText.length >= MAX_INPUT_LENGTH-1) return;
+    inputRow.innerText += "."
+}
+
+function changeSign() {
+    if (inputRow.innerText.length >= MAX_INPUT_LENGTH) return;
+    if (inputRow.innerText.includes("-")) {
+        inputRow.innerText = inputRow.innerText.substring(1);
+    } else {
+        inputRow.innerText = "-" + inputRow.innerText;
     }
 }
 
@@ -47,11 +61,19 @@ function handleAction(e) {
             break;
         case "del":
             if (inputRow.innerText == "0" || inputRow.innerText.length == 0) break;
-            if (inputRow.innerText.length == 1) {
+            if (inputRow.innerText == "-0") {
+                inputRow.innerText = "0";
+            } else if (inputRow.innerText.length == 1) {
                 inputRow.innerText = DEFAULT_VALUE;
             } else {
                 inputRow.innerText = inputRow.innerText.slice(0, -1);
             }
+            break;
+        case ".":
+            addDecimal();
+            break;
+        case "sgn":
+            changeSign();
             break;
         default:
             break;
