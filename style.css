@@ -90,6 +90,16 @@ a {
     transition: all 0.075s;
 }
 
+.ce-button,.clear-button {
+    box-shadow: 0 6px #813434;
+    background-color: #ab4545;
+}
+
+.equals-button {
+    box-shadow: 0 6px #373481;
+    background-color: #4549ab;
+}
+
 .button:hover {
     filter: brightness(150%);
 }
@@ -97,5 +107,5 @@ a {
 .pressed {
     margin-top: 6px;
     margin-bottom: -6px;
-    box-shadow: 0 0px #5f5f5f;
+    box-shadow: none;
 }
