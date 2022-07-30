@@ -4,14 +4,31 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: #eee;
-    height: 95vh;
+}
+
+.header {
+    text-align: center;
+    padding-bottom: 10vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+h1 {
+    font-size: 48px;
+    font-weight: 300;
+}
+
+.header span {
+    font-weight: 400;
 }
 
 .footer {
     display: flex;
-    align-items: flex-end;
-    margin: 5vh 0;
+    text-align: center;
+    align-items: center;
+    padding: 10vh 0;
     color: gray;
     font-weight: 400;
     flex: 1;
