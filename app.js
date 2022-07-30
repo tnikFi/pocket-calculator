@@ -14,6 +14,31 @@ const FUNCTIONS = {
     "÷": (a, b) => a / b
 }
 
+
+const KEY_MAPPINGS = {
+    "0": {dataType: "number", symbol: "0"},
+    "2": {dataType: "number", symbol: "1"},
+    "2": {dataType: "number", symbol: "2"},
+    "3": {dataType: "number", symbol: "3"},
+    "4": {dataType: "number", symbol: "4"},
+    "5": {dataType: "number", symbol: "5"},
+    "6": {dataType: "number", symbol: "6"},
+    "7": {dataType: "number", symbol: "7"},
+    "8": {dataType: "number", symbol: "8"},
+    "9": {dataType: "number", symbol: "9"},
+    ".": {dataType: "number", symbol: "."},
+    "c": {dataType: "action", symbol: "c"},
+    "Delete": {dataType: "action", symbol: "ce"},
+    "Backspace": {dataType: "action", symbol: "del"},
+    "sgn": {dataType: "action", symbol: "sgn"},"1": {dataType: "number", symbol: "1"},
+    "+": {dataType: "action", symbol: "+"},
+    "-": {dataType: "action", symbol: "-"},
+    "*": {dataType: "action", symbol: "×"},
+    "/": {dataType: "action", symbol: "÷"},
+    "=": {dataType: "action", symbol: "="},
+    "Enter": {dataType: "action", symbol: "="},
+}
+
 let memory = {
     value: DEFAULT_VALUE,
     action: null,
@@ -87,8 +112,7 @@ function setAction(key) {
     setOutput(`${memory.value} ${key}`);
 }
 
-function handleAction(e) {
-    let symbol = e.target.getAttribute("data-symbol");
+function handleAction(symbol) {
     switch (symbol) {
         case "ce":
             setInput();
@@ -124,12 +148,21 @@ function handleAction(e) {
     }
 }
 
+function keyPress(e) {
+    let keyMapping = KEY_MAPPINGS[e.key];
+    if (!keyMapping) return;
+    let button = document.querySelector(`.button[data-symbol=\"${keyMapping.symbol}\"]`);
+    if (!button) return;
+    // Emulate a click event on the button. Only the target is needed.
+    buttonClick({target: button});
+}
+
 function buttonClick(e) {
     e.target.classList.add("pressed");
     if (e.target.getAttribute("data-type") == "number") {
         addNumber(parseInt(e.target.getAttribute("data-symbol")));
     } else {
-        handleAction(e);
+        handleAction(e.target.getAttribute("data-symbol"));
     }
 }
 
@@ -142,3 +175,5 @@ buttons.forEach(button => {
     button.addEventListener("click", buttonClick);
     button.addEventListener("transitionend", transitionEnd);
 });
+
+window.addEventListener("keydown", keyPress);
